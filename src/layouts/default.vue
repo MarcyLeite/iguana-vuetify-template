@@ -1,8 +1,5 @@
 <template>
-  <v-navigation-drawer
-    v-model="drawer"
-    temporary
-  />
+  <app-drawer v-model="drawer"/>
   <v-app-bar>
     <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     <v-app-bar-title>Iguana Frontend - Vuetify</v-app-bar-title>
