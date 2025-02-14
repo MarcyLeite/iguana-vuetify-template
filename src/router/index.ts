@@ -5,13 +5,25 @@
  */
 
 // Composables
-import { createRouter, createWebHistory } from 'vue-router/auto'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
 
+const createPropsRoute = (route: RouteRecordRaw) => {
+  const propsRoute = Object.assign({ props: true }, route)
+  if(!propsRoute.children) return propsRoute
+
+  const propsChildren = propsRoute.children.map(child => createPropsRoute(child))
+  propsRoute.children = propsChildren
+
+  return propsRoute
+}
+
+const propsRoutes = routes.map(createPropsRoute)
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: setupLayouts(routes),
+  routes: setupLayouts(propsRoutes),
 })
 
 // Workaround for https://github.com/vitejs/vite/issues/11804
