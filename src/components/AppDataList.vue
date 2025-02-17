@@ -1,0 +1,81 @@
+<template>
+	<div class="d-flex flex-column ga-4">
+		<span class="text-h5">{{ title }}</span>
+		<v-card
+		v-for="(data, i) in dataList"
+		:key="i"
+		>
+		<v-card-title>{{ data[titleKey] }}</v-card-title>
+		<v-card-subtitle>{{ data[subtitleKey] }}</v-card-subtitle>
+		<v-card-actions>
+			<div class="d-flex justify-space-between w-100">
+			<v-btn :to="`${viewPath}/${data[idKey]}`">
+				view
+			</v-btn>
+			<div>
+				<v-btn :to="`${editPath}/${data[idKey]}`">
+				edit
+				</v-btn>
+				<confirm-prompt>
+				<template #activator>
+					<v-btn color="error">
+					delete
+					</v-btn>
+				</template>
+				<template #title>
+					Delete user <span class="text-warning text-uppercase font-weight-bold"> {{ data[titleKey] }}</span>
+				</template>
+				<template #text>
+					Are you sure you want to delete user <span class="text-warning font-weight-bold"> {{ data[titleKey] }}</span>?
+				</template>
+				<template #confirm="{close}">
+					<v-btn
+					color="error"
+					@click="deleteData(data); close()"
+					>
+					Delete
+					</v-btn>
+				</template>
+				</confirm-prompt>
+			</div>
+			</div>
+		</v-card-actions>
+		</v-card>
+		<v-pagination
+		v-model="pageIndex"
+		class="px-2"
+		length="20"
+		/>
+	</div>
+</template>
+
+<script setup lang="tsx">
+type DataType = Record<string, any>
+type Props = {
+	fetchPage: (page: number) => Promise<DataType[]>
+	deleteData: (data: any) => Promise<void>
+	title: string
+	idKey: string
+	titleKey: string
+	subtitleKey: string
+	viewPath: string
+	editPath: string
+}
+
+const { fetchPage, deleteData, title, idKey, titleKey, subtitleKey, viewPath, editPath } = defineProps<Props>()
+const dataList = ref<DataType[] | null>(null)
+
+const pageIndex = ref(1)
+
+const fetchDataList = async () => {
+	dataList.value = await fetchPage(pageIndex.value)
+}
+
+onMounted(() => {
+	fetchDataList()
+})
+
+watch(pageIndex, () => {
+	fetchDataList()
+})
+</script>
