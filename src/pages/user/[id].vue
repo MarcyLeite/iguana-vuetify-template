@@ -52,7 +52,7 @@ const { id } = defineProps<Props>()
 const user = ref<User | null>(null)
 
 const fetchUser = async () => {
-  const mockUser = {id: Number(id), name: `User ${id}`, email: `user.me${id}@email.com`}
+  const mockUser = { id: Number(id), name: `User ${id}`, email: `user.me${id}@email.com` }
   user.value = mockUser
 }
 
@@ -62,7 +62,7 @@ const fetchItemList = async (index: number) => {
   const mockMapper = (n: number) => {
     const offset = (index - 1) * PAGE_SIZE
     const shift = n + 1 + offset
-    return { id: shift, name: `Item ${shift}`, description: `Hello, I'm Item ${shift}. Nice to meet you!`, price: `R$${shift % 4},${(shift % 60).toLocaleString('en-US', { minimumIntegerDigits: 2 })}` }
+    return { id: shift, name: `Item ${shift}`, description: `Hello, I'm Item ${shift}. Nice to meet you!`, price: (shift * 20 / 33).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
   }
 
   return [...Array(PAGE_SIZE).keys()].map(mockMapper)
