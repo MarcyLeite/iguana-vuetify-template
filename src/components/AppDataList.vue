@@ -9,24 +9,29 @@
       <v-card-subtitle>{{ data[subtitleKey] }}</v-card-subtitle>
       <v-card-actions>
         <div class="d-flex justify-space-between w-100">
-          <v-btn :to="`${path}/${data[idKey]}`">
-            view
-          </v-btn>
+          <div>
+            <v-btn :to="`${path}/${data[idKey]}`">
+              view
+            </v-btn>
+          </div>
           <div>
             <v-btn :to="`${path}/${data[idKey]}/edit`">
               edit
             </v-btn>
             <confirm-prompt>
-              <template #activator>
-                <v-btn color="error">
+              <template #activator="{props: activatorProps}">
+                <v-btn
+                  v-bind="activatorProps"
+                  color="error"
+                >
                   delete
                 </v-btn>
               </template>
               <template #title>
-                Delete user <span class="text-warning text-uppercase font-weight-bold"> {{ data[titleKey] }}</span>
+                Delete {{ title }} <span class="text-warning text-uppercase font-weight-bold"> {{ data[titleKey] }}</span>
               </template>
               <template #text>
-                Are you sure you want to delete user <span class="text-warning font-weight-bold"> {{ data[titleKey] }}</span>?
+                Are you sure you want to delete {{ title }} <span class="text-warning font-weight-bold"> {{ data[titleKey] }}</span>?
               </template>
               <template #confirm="{close}">
                 <v-btn
