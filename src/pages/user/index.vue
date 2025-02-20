@@ -11,8 +11,7 @@
         id-key="id"
         title-key="name"
         subtitle-key="email"
-        view-path="/user"
-        edit-path="/user/edit"
+        path="/user"
       />
     </v-responsive>
   </v-container>
@@ -23,6 +22,7 @@ export type User = {
   id: number
   name: string
   email: string
+  description: string
 }
 
 const PAGE_SIZE = 10
