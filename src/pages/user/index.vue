@@ -35,7 +35,7 @@ const fetchUserList = async (index: number) => {
   const mockMapper = (n: number) => {
     const offset = (index - 1) * PAGE_SIZE
     const shift = n + 1 + offset
-    return { id: shift, name: `User ${shift}`, email: `user.me${shift}@email.com` }
+    return { id: shift, name: `User ${shift}`, email: `user.me${shift}@email.com` } as never
   }
 
   return [...Array(PAGE_SIZE).keys()].map(mockMapper)
