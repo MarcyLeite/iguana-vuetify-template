@@ -72,7 +72,15 @@ const { id } = defineProps<Props>()
 const user = ref<User | null>(null)
 
 const fetchUser = async () => {
-  const mockUser = { id: Number(id), name: `User ${id}`, email: `user.me${id}@email.com`,  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices eu velit non vulputate. Aliquam in massa id orci fermentum venenatis. Pellentesque luctus turpis eget mi sodales, vitae pharetra eros tristique. Nam mattis tincidunt efficitur. Interdum et malesuada fames ac ante ipsum primis in faucibus.' }
+  const mockUser = {
+    id: Number(id), 
+    name: `User ${id}`, 
+    email: `user.me${id}@email.com`,  
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' +
+    ' Sed ultrices eu velit non vulputate.' + ' Aliquam in massa id orci fermentum venenatis.' +
+    ' Pellentesque luctus turpis eget mi sodales, vitae pharetra eros tristique.' +
+    ' Nam mattis tincidunt efficitur. Interdum et malesuada fames ac ante ipsum primis in faucibus.' 
+  }
   user.value = mockUser
 }
 
@@ -90,7 +98,13 @@ const fetchItemList = async (index: number) => {
   const mockMapper = (n: number) => {
     const offset = (index - 1) * PAGE_SIZE
     const shift = n + 1 + offset
-    return { id: shift, name: `Item ${shift}`, description: `Hello, I'm Item ${shift}. Nice to meet you!`, price: (shift * 20 / 33).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) } as never
+    return {
+      id: shift,
+      name: `Item ${shift}`, 
+      description: `Hello, I'm Item ${shift}. Nice to meet you!`,
+      price: (shift * 20 / 33)
+        .toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) 
+    } as never
   }
 
   return [...Array(PAGE_SIZE).keys()].map(mockMapper)

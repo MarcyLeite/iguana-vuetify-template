@@ -9,11 +9,7 @@ import vueTsEslintConfig from '@vue/eslint-config-typescript'
 import stylisticTs from '@stylistic/eslint-plugin-ts'
 
 export default [
-  {
-    plugins: {
-      '@stylistic/ts': stylisticTs
-    }
-  },
+  { plugins: { '@stylistic/ts': stylisticTs } },
   {
     name: 'app/files-to-lint',
     files: ['**/*.{ts,mts,tsx,vue}'],
@@ -38,6 +34,10 @@ export default [
       ],
       'vue/multi-word-component-names': 'off',
       '@stylistic/ts/indent': ['error', 2],
+      '@/max-len': ['error', { code: 120, "ignoreComments": true }],
+      '@/object-curly-spacing': ['error', 'always'],
+      '@/array-bracket-newline': ['error', { multiline: true }],
+      '@/object-curly-newline': ['error', { multiline: true }]
     }
   }
 ]

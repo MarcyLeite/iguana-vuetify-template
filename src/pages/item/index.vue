@@ -35,7 +35,16 @@ const fetchItemList = async (index: number) => {
   const mockMapper = (n: number) => {
     const offset = (index - 1) * PAGE_SIZE
     const shift = n + 1 + offset
-    return { id: shift, name: `Item ${shift}`, description: `Hello, I'm Item ${shift}. Nice to meet you!`, price: (shift * 20 / 33).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) } as never
+    return { 
+      id: shift, 
+      name: `Item ${shift}`, 
+      description: `Hello, I'm Item ${shift}. Nice to meet you!`,
+      price: (shift * 20 / 33)
+        .toLocaleString('en-US', { 
+          minimumFractionDigits: 2, 
+          maximumFractionDigits: 2 
+        }) 
+    } as never
   }
 
   return [...Array(PAGE_SIZE).keys()].map(mockMapper)

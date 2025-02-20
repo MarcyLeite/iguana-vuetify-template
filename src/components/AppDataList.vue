@@ -28,10 +28,16 @@
                 </v-btn>
               </template>
               <template #title>
-                Delete {{ title }} <span class="text-warning text-uppercase font-weight-bold"> {{ data[titleKey] }}</span>
+                Delete {{ title }}
+                <span class="text-warning text-uppercase font-weight-bold">
+                  {{ data[titleKey] }}
+                </span>
               </template>
               <template #text>
-                Are you sure you want to delete {{ title }} <span class="text-warning font-weight-bold"> {{ data[titleKey] }}</span>?
+                Are you sure you want to delete {{ title }}
+                <span class="text-warning font-weight-bold">
+                  {{ data[titleKey] }}
+                </span>?
               </template>
               <template #confirm="{close}">
                 <v-btn
@@ -66,7 +72,14 @@ type Props = {
   path: string
 }
 
-const { fetchPage, deleteData, title, idKey, titleKey, subtitleKey, path } = defineProps<Props>()
+const {
+  fetchPage,
+  deleteData,
+  title, idKey,
+  titleKey,
+  subtitleKey,
+  path 
+} = defineProps<Props>()
 const dataList = ref<DataType[] | null>(null)
 
 const pageIndex = ref(1)

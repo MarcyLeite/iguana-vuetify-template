@@ -5,7 +5,11 @@
  */
 
 // Composables
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router/auto'
+import {
+  createRouter,
+  createWebHistory,
+  type RouteRecordRaw
+} from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
 

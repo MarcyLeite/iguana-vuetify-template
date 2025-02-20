@@ -64,7 +64,13 @@ const saveItem = async () => {
 }
 
 const fetchItem = async () => {
-  const mockItem = { id: Number(id), name: `Item ${id}`, description: `Hello, I'm Item ${id}. Nice to meet you!`, price: (Number(id) * 20 / 33).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
+  const mockItem = {
+    id: Number(id),
+    name: `Item ${id}`,
+    description: `Hello, I'm Item ${id}. Nice to meet you!`,
+    price: (Number(id) * 20 / 33).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) 
+  }
+  
   item.value = mockItem
 }
 
